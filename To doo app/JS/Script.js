@@ -36,9 +36,9 @@ DarkMode:false,
  ]
     }
 
-    console.log(NewData.list[0]);
     
-    //return NewData;
+    
+    return NewData;
 }
 
 
@@ -56,12 +56,17 @@ function initapp(){
 
     if (currentData==null) {
 // vi har ikke data      
-        makeNewData()
+    currentData.makeNewData()
+    saveData(currentData)
+     // vis data til bruger
 
-    } else {
-        // vis data til bruger        
+
     }
+
+    
+    // vis data til bruger
 }
+
 
 //#endregion controller code
 
