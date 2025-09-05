@@ -1,6 +1,8 @@
 
 // #region globals
-const conrentsection = document.getElementById('mainContainer');
+const contentsection = document.getElementById('content');
+console.log(contentsection);
+
 let currentData=null;
 //#endregion globals
 
@@ -71,16 +73,21 @@ function initapp(){
 function makeListsView(data){
     console.log('makeListsView');
     //tøm conrentsection
-    conrentsection.innerHTML='';
-    data.list.forEach(list => {
+    console.log(contentsection);
+    
+    contentsection.innerHTML='';
+
+    data.list.forEach((list,index) => {
 
         console.log(list.listName);
 
         let listContainer=document.createElement('div')
-    //vis liste
-    listContainer.innerHTML=`<h2>${list.listName}</h2>`
+//vis liste
+listContainer.innerHTML=`<h2 onclick="listViewCallBack('ShowList',${index})">${list.listName}
+</h2><button>edit</button>
+</h2><button>Delete</button>`
 
-        conrentsection.appendChild(listContainer)
+contentsection.appendChild(listContainer)
  
     });
 
