@@ -51,20 +51,16 @@ function initapp(){
     //hent data
     currentData=getData()
     
-    
     //evaluer data 
 
     if (currentData==null) {
 // vi har ikke data      
-    currentData.makeNewData()
+    currentData=makeNewData()
     saveData(currentData)
-     // vis data til bruger
-
-
     }
 
-    
-    // vis data til bruger
+    // vi har data
+    makeListsView(currentData)
 }
 
 
@@ -72,6 +68,24 @@ function initapp(){
 
 // #region VIEW CODE
 
+function makeListsView(data){
+    console.log('makeListsView');
+    //tøm conrentsection
+    conrentsection.innerHTML='';
+    data.list.forEach(list => {
+
+        console.log(list.listName);
+
+        let listContainer=document.createElement('div')
+    //vis liste
+    listContainer.innerHTML=`<h2>${list.listName}</h2>`
+
+        conrentsection.appendChild(listContainer)
+ 
+    });
+
+
+}
 //#endregion view code
 
 
