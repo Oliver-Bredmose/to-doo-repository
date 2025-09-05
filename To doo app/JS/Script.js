@@ -36,7 +36,9 @@ DarkMode:false,
  ]
     }
 
-    return NewData;
+    console.log(NewData.list[0]);
+    
+    //return NewData;
 }
 
 
