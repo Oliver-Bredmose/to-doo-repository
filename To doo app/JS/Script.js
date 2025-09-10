@@ -1,8 +1,6 @@
 // #region globals
 const contentsection = document.getElementById('content');
-const localStorageKey = "toDooAppStat";
-console.log(contentsection);
-
+const addButton = document.getElementById('addButton');
 let currentData = null;
 //#endregion globals
 
@@ -10,20 +8,16 @@ initapp()
 
 // #region MODEL CODE
 function getData() {
-    console.log('getData');
     return JSON.parse(localStorage.getItem("toDooApp_v1"))
 }
 
 function saveData(myData) {
-    console.log('saveData');
     let serializedData = JSON.stringify(myData)
     localStorage.setItem("toDooApp_v1", serializedData)
 }
 
 function makeNewData() {
-    console.log('makeNewData');
-    // dummy data husk at tømme lister inden deployment
-    let NewData = {
+    return {
         DarkMode: false,
         list: [
             {
@@ -44,30 +38,22 @@ function makeNewData() {
             }
         ]
     }
-
-    return NewData;
 }
 //#endregion model code
 
 // #region CONTROLLER CODE
 function initapp() {
-    console.log('initapp');
-
-    // hent data
     currentData = getData()
 
-    // evaluer data 
     if (currentData == null) {
-        // vi har ikke data      
         currentData = makeNewData()
         saveData(currentData)
     }
 
-    // vi har data
     makeListsView(currentData)
 
     // attach add button
-    document.getElementById("addButton").addEventListener("click", () => {
+    addButton.addEventListener("click", () => {
         const newName = prompt("Enter name for new list:")
         if (newName) {
             currentData.list.push({ listName: newName, items: [] })
@@ -80,20 +66,9 @@ function initapp() {
 
 // #region VIEW CODE
 function listViewCallBack(action, index) {
-    console.log('listViewCallBack');
-    console.log(action);
-    console.log(index);
-
     switch (action) {
         case "ShowList":
-            console.log(currentData.list[index])
-            contentsection.innerHTML = ""
-
-            currentData.list[index].items.forEach((item) => {
-                let itemContainer = document.createElement('div')
-                itemContainer.innerHTML = `<h2>${item.name} - ${item.done}</h2>`
-                contentsection.appendChild(itemContainer)
-            })
+            showList(index)
             break;
 
         case "EditList":
@@ -110,9 +85,8 @@ function listViewCallBack(action, index) {
 }
 
 function makeListsView(data) {
-    console.log('makeListsView');
-    // tøm contentsection
     contentsection.innerHTML = '';
+    addButton.style.display = "inline-block"; // show add list button
 
     data.list.forEach((list, index) => {
         let listContainer = document.createElement('div')
@@ -125,6 +99,48 @@ function makeListsView(data) {
 
         contentsection.appendChild(listContainer)
     });
+}
+
+function showList(index) {
+    contentsection.innerHTML = ""
+    addButton.style.display = "none"; // hide add list button when inside a list
+
+    // back button
+    let backBtn = document.createElement('button')
+    backBtn.innerText = "← Back"
+    backBtn.onclick = () => makeListsView(currentData)
+    contentsection.appendChild(backBtn)
+
+    // list title
+    let title = document.createElement('h2')
+    title.innerText = currentData.list[index].listName
+    contentsection.appendChild(title)
+
+    // mark all toggle button
+    let markAllBtn = document.createElement('button')
+    const allDone = currentData.list[index].items.every(item => item.done)
+    markAllBtn.innerText = allDone ? "Mark All Undone" : "Mark All Done"
+    markAllBtn.onclick = () => toggleAllItems(index, !allDone)
+    contentsection.appendChild(markAllBtn)
+
+    // items
+    currentData.list[index].items.forEach((item, itemIndex) => {
+        let itemContainer = document.createElement('div')
+        itemContainer.innerHTML = `
+            <input type="checkbox" ${item.done ? "checked" : ""} 
+                   onchange="toggleItemDone(${index}, ${itemIndex})">
+            ${item.name}
+            <button onclick="editItem(${index}, ${itemIndex})">✏️</button>
+            <button onclick="deleteItem(${index}, ${itemIndex})">❌</button>
+        `
+        contentsection.appendChild(itemContainer)
+    })
+
+    // add item button
+    let addBtn = document.createElement('button')
+    addBtn.innerText = "Add Item"
+    addBtn.onclick = () => addItem(index)
+    contentsection.appendChild(addBtn)
 }
 
 // EDIT LIST
@@ -144,5 +160,47 @@ function deleteList(index) {
         saveData(currentData)
         makeListsView(currentData)
     }
+}
+
+// ITEMS
+function addItem(listIndex) {
+    const itemName = prompt("Enter item name:")
+    if (itemName) {
+        currentData.list[listIndex].items.push({ name: itemName, done: false })
+        saveData(currentData)
+        showList(listIndex)
+    }
+}
+
+function deleteItem(listIndex, itemIndex) {
+    if (confirm("Delete this item?")) {
+        currentData.list[listIndex].items.splice(itemIndex, 1)
+        saveData(currentData)
+        showList(listIndex)
+    }
+}
+
+function toggleItemDone(listIndex, itemIndex) {
+    let item = currentData.list[listIndex].items[itemIndex]
+    item.done = !item.done
+    saveData(currentData)
+}
+
+function editItem(listIndex, itemIndex) {
+    const newName = prompt("Enter new item name:", currentData.list[listIndex].items[itemIndex].name)
+    if (newName) {
+        currentData.list[listIndex].items[itemIndex].name = newName
+        saveData(currentData)
+        showList(listIndex)
+    }
+}
+
+// TOGGLE ALL ITEMS
+function toggleAllItems(listIndex, markDone) {
+    currentData.list[listIndex].items.forEach(item => {
+        item.done = markDone
+    })
+    saveData(currentData)
+    showList(listIndex)
 }
 //#endregion view code
