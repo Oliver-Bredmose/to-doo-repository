@@ -23,7 +23,7 @@ function saveData(myData){
 
 function makeNewData(){
     console.log('makeNewData');
-// dummy data husk at tømme lister inden deplayment
+// dummy data husk at tømme lister inden deployment
     let NewData={
 DarkMode:false,
  list:[
@@ -35,10 +35,8 @@ DarkMode:false,
         listName: "indkøb",
         items:[{name:"Kød",done:false},{name:"salat",done:true},{name:"agurk",done:false}]
     }
- ]
+ ]  
     }
-
-    
     
     return NewData;
 }
@@ -69,7 +67,33 @@ function initapp(){
 //#endregion controller code
 
 // #region VIEW CODE
+function listViewCallBack(action,index){
+    console.log('listViewCallBack');
+    console.log(action);
+    console.log(index);
 
+    switch(action){
+        case "ShowList":
+            //showList(index)
+            console.log(currentData.list[index])
+            contentsection.innerHTML = ""
+
+            currentData.list[index].items.forEach((item) => {
+                let itemContainer = document.createElement('div')
+                itemContainer.innerHTML = `<h2>${item.name} - ${item.done}</h2>`
+                contentsection.appendChild(itemContainer)
+            })
+            break;
+        case "EditList":
+            editList(index)
+            break;
+        case "DeleteList":
+            deleteList(index)
+            break;
+        default:
+            console.log("no action");
+    }
+}
 function makeListsView(data){
     console.log('makeListsView');
     //tøm conrentsection
@@ -92,6 +116,17 @@ contentsection.appendChild(listContainer)
     });
 
 
+}
+
+//BUTTONS
+
+//DELETE BUTTON
+function DeleteList(index) {
+    if (!confirm("Are you sure?")) {
+        currentData.list.splice(index, 1)
+        saveData(currentData)
+        makeListsView(currentData)
+    }
 }
 //#endregion view code
 
