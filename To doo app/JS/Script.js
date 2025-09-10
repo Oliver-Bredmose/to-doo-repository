@@ -81,7 +81,7 @@ function initapp() {
 
     // global "Add List" button
     addButton.addEventListener("click", () => {
-        const newName = prompt("Enter name for new list:")
+        const newName = prompt("Navngiv nye ToDoo:")
         if (newName) {
             currentData.list.push({ listName: newName, items: [] })
             saveData(currentData)
@@ -162,13 +162,13 @@ function showList(index) {
 
     // add item button
     let addBtn = document.createElement('button')
-    addBtn.innerText = "Add Item"
+    addBtn.innerText = "Lav ny ToDoo"
     addBtn.onclick = () => addItem(index)
     contentsection.appendChild(addBtn)
 }
 
 function editList(index) {
-    const newName = prompt("Enter new list name:", currentData.list[index].listName)
+    const newName = prompt("Tilføj nyt list navn:", currentData.list[index].listName)
     if (newName) {
         currentData.list[index].listName = newName
         saveData(currentData)
@@ -177,7 +177,7 @@ function editList(index) {
 }
 
 function deleteList(index) {
-    if (confirm("Are you sure?")) {
+    if (confirm("Sikker på du vil slette?")) {
         currentData.list.splice(index, 1)
         saveData(currentData)
         makeListsView(currentData)
@@ -185,7 +185,7 @@ function deleteList(index) {
 }
 
 function addItem(listIndex) {
-    const itemName = prompt("Enter item name:")
+    const itemName = prompt("Navngiv ToDoo:")
     if (itemName) {
         currentData.list[listIndex].items.push({ name: itemName, done: false })
         saveData(currentData)
@@ -208,7 +208,7 @@ function toggleItemDone(listIndex, itemIndex) {
 }
 
 function editItem(listIndex, itemIndex) {
-    const newName = prompt("Enter new item name:", currentData.list[listIndex].items[itemIndex].name)
+    const newName = prompt("Tilføj nyt list navn:", currentData.list[listIndex].items[itemIndex].name)
     if (newName) {
         currentData.list[listIndex].items[itemIndex].name = newName
         saveData(currentData)
