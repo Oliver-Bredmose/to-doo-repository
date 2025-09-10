@@ -1,12 +1,16 @@
-// #region globals
+
+// #region GLOBALS
+
 const contentsection = document.getElementById('content');
 const addButton = document.getElementById('addButton');
 let currentData = null;
-//#endregion globals
+// #endregion GLOBALS
 
 initapp()
 
+
 // #region MODEL CODE
+
 function getData() {
     return JSON.parse(localStorage.getItem("toDooApp_v1"))
 }
@@ -39,9 +43,11 @@ function makeNewData() {
         ]
     }
 }
-//#endregion model code
+// #endregion MODEL
+
 
 // #region CONTROLLER CODE
+
 function initapp() {
     currentData = getData()
 
@@ -52,7 +58,7 @@ function initapp() {
 
     makeListsView(currentData)
 
-    // attach add button
+    // global "Add List" button
     addButton.addEventListener("click", () => {
         const newName = prompt("Enter name for new list:")
         if (newName) {
@@ -62,48 +68,45 @@ function initapp() {
         }
     })
 }
-//#endregion controller code
 
-// #region VIEW CODE
 function listViewCallBack(action, index) {
     switch (action) {
         case "ShowList":
             showList(index)
             break;
-
         case "EditList":
             editList(index)
             break;
-
         case "DeleteList":
             deleteList(index)
             break;
-
         default:
             console.log("no action");
     }
 }
+// #endregion CONTROLLER
+
+
+// #region VIEW CODE 
 
 function makeListsView(data) {
     contentsection.innerHTML = '';
-    addButton.style.display = "inline-block"; // show add list button
+    addButton.style.display = "inline-block"; // show Add List button
 
     data.list.forEach((list, index) => {
         let listContainer = document.createElement('div')
-
         listContainer.innerHTML = `
             <h2 onclick="listViewCallBack('ShowList', ${index})">${list.listName}</h2>
             <button onclick="listViewCallBack('EditList', ${index})">Edit</button>
             <button onclick="listViewCallBack('DeleteList', ${index})">Delete</button>
         `
-
         contentsection.appendChild(listContainer)
     });
 }
 
 function showList(index) {
     contentsection.innerHTML = ""
-    addButton.style.display = "none"; // hide add list button when inside a list
+    addButton.style.display = "none"; // hide Add List button when inside a list
 
     // back button
     let backBtn = document.createElement('button')
@@ -130,8 +133,8 @@ function showList(index) {
             <input type="checkbox" ${item.done ? "checked" : ""} 
                    onchange="toggleItemDone(${index}, ${itemIndex})">
             ${item.name}
-            <button onclick="editItem(${index}, ${itemIndex})">✏️</button>
-            <button onclick="deleteItem(${index}, ${itemIndex})">❌</button>
+            <button onclick="editItem(${index}, ${itemIndex})">Edit</button>
+            <button onclick="deleteItem(${index}, ${itemIndex})">Delete</button>
         `
         contentsection.appendChild(itemContainer)
     })
@@ -143,7 +146,6 @@ function showList(index) {
     contentsection.appendChild(addBtn)
 }
 
-// EDIT LIST
 function editList(index) {
     const newName = prompt("Enter new list name:", currentData.list[index].listName)
     if (newName) {
@@ -153,7 +155,6 @@ function editList(index) {
     }
 }
 
-// DELETE LIST
 function deleteList(index) {
     if (confirm("Are you sure?")) {
         currentData.list.splice(index, 1)
@@ -162,7 +163,6 @@ function deleteList(index) {
     }
 }
 
-// ITEMS
 function addItem(listIndex) {
     const itemName = prompt("Enter item name:")
     if (itemName) {
@@ -195,7 +195,6 @@ function editItem(listIndex, itemIndex) {
     }
 }
 
-// TOGGLE ALL ITEMS
 function toggleAllItems(listIndex, markDone) {
     currentData.list[listIndex].items.forEach(item => {
         item.done = markDone
@@ -203,4 +202,7 @@ function toggleAllItems(listIndex, markDone) {
     saveData(currentData)
     showList(listIndex)
 }
-//#endregion view code
+// #endregion VIEW - LISTS
+
+
+
