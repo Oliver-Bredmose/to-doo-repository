@@ -1,0 +1,38 @@
+:root{
+    --Text: #0B0B0C;
+    --Background:#F5F6F7;
+    --Primary: #6E80A6;
+    --secondary:#9DADCF;
+    --accent-:#7894CC;
+
+}
+.darkmode{
+    --Text:#f9f9f9;
+    --Background:#2D2E30;
+    --Primary:#596991;
+    --secondary:#314163;
+    --accent:#324E85;
+}
+
+body {
+    background-color: var(--Background);
+    color: var(--Text);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#DarkModeButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#DarkModeButton:hover {
+    background-color: #0056b3;
+}

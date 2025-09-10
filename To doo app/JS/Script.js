@@ -7,6 +7,8 @@ let currentData = null;
 // #endregion GLOBALS
 
 initapp()
+GetDarkmode();
+
 
 
 // #region MODEL CODE
@@ -43,6 +45,25 @@ function makeNewData() {
         ]
     }
 }
+
+function GetDarkmode() {
+    var element = document.body;
+    const textEl = document.querySelector('#DarkModeButton .toggle-text');
+    if (localStorage.getItem("theme") === "dark") {
+      element.classList.add("darkmode");
+      if (textEl) textEl.textContent = "Dark";
+    } else {
+      element.classList.remove("darkmode");
+      if (textEl) textEl.textContent = "Light";
+    }
+  }
+  
+  // Set Darkmode
+  function SetDarkmode() {
+    var element = document.body;
+    element.classList.add("darkmode");
+    localStorage.setItem("theme", "dark");
+  }
 // #endregion MODEL
 
 
@@ -173,7 +194,7 @@ function addItem(listIndex) {
 }
 
 function deleteItem(listIndex, itemIndex) {
-    if (confirm("Delete this item?")) {
+    if (confirm("Sikker på du vil slette?")) {
         currentData.list[listIndex].items.splice(itemIndex, 1)
         saveData(currentData)
         showList(listIndex)
@@ -202,7 +223,21 @@ function toggleAllItems(listIndex, markDone) {
     saveData(currentData)
     showList(listIndex)
 }
+
+// Toggle Light/Dark mode
+function ToggleTheme() {
+    var element = document.body;
+    const textEl = document.querySelector('#DarkModeButton');
+  
+    if (localStorage.getItem("theme") === "dark") {
+      localStorage.setItem("theme", "light");
+      element.classList.remove("darkmode");
+      if (textEl) textEl.textContent = "Light";
+    } else {
+      localStorage.setItem("theme", "dark");
+      element.classList.add("darkmode");
+      if (textEl) textEl.textContent = "Dark";
+    }
+  }
+
 // #endregion VIEW - LISTS
-
-
-
