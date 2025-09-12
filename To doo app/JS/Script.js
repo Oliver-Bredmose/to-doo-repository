@@ -81,7 +81,7 @@ function initapp() {
 
     // global "Add List" button
     addButton.addEventListener("click", () => {
-        const newName = prompt("Navngiv nye ToDoo:")
+        const newName = prompt("Navngiv den nye ToDoo:")
         if (newName) {
             currentData.list.push({ listName: newName, items: [] })
             saveData(currentData)
@@ -228,6 +228,7 @@ function toggleAllItems(listIndex, markDone) {
 function ToggleTheme() {
     var element = document.body;
     const textEl = document.querySelector('#DarkModeButton');
+    const addButton = document.getElementById('addButton'); 
   
     if (localStorage.getItem("theme") === "dark") {
       localStorage.setItem("theme", "light");
