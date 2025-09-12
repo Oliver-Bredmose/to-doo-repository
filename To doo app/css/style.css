@@ -31,34 +31,54 @@ body {
     padding: 5px 10px;
     color: var(--secondary);
     background-color: var(--secondary);
-    border-radius: 5px;
+    border-radius: 13px;
     cursor: pointer;
+    margin-right: 4px;
     transition: background-color 0.3s;
     svg{
-        width: 20px;
+        width: 30px;
         fill : var(--Text)
     }
 }
 
-#menuButton{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: solid;
-    padding: 5px 10px;
-    color: var(--secondary);
-    background-color: var(--secondary);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    svg{
-        width: 20px;
-        fill : var(--Primary)
-    }
-}
 #addButton:hover, #menuButton:hover {
     background-color: var(--accent);
 }
+
+.menuButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    border: solid;
+    padding: 5px 10px;
+    margin: 4px;
+    border-radius: 13px;
+    color: var(--secondary);
+    background-color: var(--secondary);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    svg{
+        width: 30px;
+        fill : var(--Primary)
+    }
+}
+
+    #box1{
+        border-radius: 25px;
+        border: 1px solid;
+        height: 60px;
+        width: 340px;
+        background-color: var(--accent);
+        display: flex;
+        align-self: center;
+        position: absolute;
+        bottom: 20px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15 10px;
+    }
+
 
 #DarkModeButton {
     position: fixed;
@@ -76,18 +96,8 @@ body {
     background-color: #0056b3;
 }
 
-#box1{
-    border-radius: 15px;
-    border: 1px solid;
-    height: 50px;
-    width: 300px;
-    background-color: var(--accent);
-    display: flex;
-    align-self: center;
-    position: absolute;
-    bottom: 20px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15 10px;
-}
+/* CARDS START */
 
+/* Iphone */
+@media(min-width: 600px){
+}
