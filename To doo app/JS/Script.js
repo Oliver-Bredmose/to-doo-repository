@@ -9,8 +9,6 @@ let currentData = null;
 initapp()
 GetDarkmode();
 
-
-
 // #region MODEL CODE
 
 function getData() {
@@ -127,7 +125,7 @@ function makeListsView(data) {
 
 function showList(index) {
     contentsection.innerHTML = ""
-    addButton.style.display = "none"; // hide Add List button when inside a list
+    addButton.style.display = "none"; 
 
     // back button
     let backBtn = document.createElement('button')
@@ -140,12 +138,6 @@ function showList(index) {
     title.innerText = currentData.list[index].listName
     contentsection.appendChild(title)
 
-    // mark all toggle button
-    let markAllBtn = document.createElement('button')
-    const allDone = currentData.list[index].items.every(item => item.done)
-    markAllBtn.innerText = allDone ? "Mark All Undone" : "Mark All Done"
-    markAllBtn.onclick = () => toggleAllItems(index, !allDone)
-    contentsection.appendChild(markAllBtn)
 
     // items
     currentData.list[index].items.forEach((item, itemIndex) => {
