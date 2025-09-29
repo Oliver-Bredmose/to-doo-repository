@@ -114,6 +114,7 @@ function makeListsView(data) {
 
     data.list.forEach((list, index) => {
         let listContainer = document.createElement('div')
+        listContainer.classList.add('list-container')
         listContainer.innerHTML = `
             <h2 onclick="listViewCallBack('ShowList', ${index})">${list.listName}</h2>
             <button onclick="listViewCallBack('EditList', ${index})">Edit</button>
@@ -142,12 +143,13 @@ function showList(index) {
     // items
     currentData.list[index].items.forEach((item, itemIndex) => {
         let itemContainer = document.createElement('div')
+        itemContainer.classList.add('item-kontainer')
         itemContainer.innerHTML = `
             <input type="checkbox" ${item.done ? "checked" : ""} 
                    onchange="toggleItemDone(${index}, ${itemIndex})">
-            ${item.name}
-            <button onclick="editItem(${index}, ${itemIndex})">Edit</button>
+            <div onclick="editItem(${index}, ${itemIndex})">${item.name}</div>
             <button onclick="deleteItem(${index}, ${itemIndex})">Delete</button>
+            
         `
         contentsection.appendChild(itemContainer)
     })
