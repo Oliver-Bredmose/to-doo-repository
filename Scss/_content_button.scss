@@ -1,0 +1,22 @@
+#content button{
+    border: solid;
+    padding: 5px 10px;
+    color: var(--secondary);
+    background-color: var(--accent);
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+#content h2{
+    width: 50%;
+    margin: auto;
+    background-color: var(--Primary);
+    border: none;
+    padding: 1rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+    text-align: center;
+    word-wrap: break-word;
+}

@@ -1,0 +1,146 @@
+:root {
+  --Text: #0B0B0C;
+  --Background:#F5F6F7;
+  --Primary: #6E80A6;
+  --secondary:#9DADCF;
+  --accent-:#7894CC;
+}
+
+body {
+  background-color: var(--Background);
+  color: var(--Text);
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
+}
+
+#content button {
+  border: solid;
+  padding: 5px 10px;
+  color: var(--secondary);
+  background-color: var(--accent);
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+#content h2 {
+  width: 50%;
+  margin: auto;
+  background-color: var(--Primary);
+  border: none;
+  padding: 1rem;
+  border-radius: 16px;
+  margin-top: 2rem;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+/* LIST STYLING */
+.item-kontainer {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* FORSIDE STYLING */
+.list-container {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  border: solid;
+  padding: 5px 10px;
+  margin: 4px;
+  border-radius: 16px;
+  color: var(--secondary);
+  background-color: var(--secondary);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.menuButton svg {
+  width: 30px;
+  fill: var(--Primary);
+}
+
+#addButton {
+  border: solid;
+  padding: 5px 10px;
+  color: var(--Primary);
+  background-color: var(--accent);
+  border-radius: 16px;
+  cursor: pointer;
+  margin-right: 4px;
+  transition: background-color 0.3s;
+}
+#addButton svg {
+  width: 30px;
+  fill: var(--accent);
+}
+
+#addButton:hover, #menuButton:hover {
+  background-color: var(--accent);
+}
+
+.darkmode {
+  --Text:#f9f9f9;
+  --Background:#2D2E30;
+  --Primary:#596991;
+  --secondary:#314163;
+  --accent:#324E85;
+}
+
+#DarkModeButton {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background-color: var(--Primary);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#DarkModeButton:hover {
+  background-color: var(--accent);
+}
+
+#box1 {
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  border: 2px solid;
+  height: 70px;
+  width: 350px;
+  gap: 2px;
+  position: absolute;
+  bottom: 20px;
+  fill: var(--Background);
+}
+
+.box2 {
+  display: flex;
+  align-items: end;
+  position: relative;
+  border-radius: 16px;
+  position: absolute;
+  gap: 10;
+  bottom: 30px;
+  left: 280px;
+  padding: 5 10px;
+  margin: 4px;
+  fill: var(--Text);
+}/*# sourceMappingURL=style.css.map */

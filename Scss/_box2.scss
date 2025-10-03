@@ -1,0 +1,13 @@
+.box2{
+    display: flex;
+    align-items: end;
+    position: relative;
+    border-radius: 16px;
+    position: absolute;
+    gap: 10;
+    bottom: 30px;
+    left: 280px;
+    padding: 5 10px;
+    margin: 4px;
+    fill: var(--Text);
+}

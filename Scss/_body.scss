@@ -1,0 +1,10 @@
+body {
+    background-color: var(--Background);
+    color: var(--Text);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+}

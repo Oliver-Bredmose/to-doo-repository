@@ -1,0 +1,23 @@
+.darkmode{
+    --Text:#f9f9f9;
+    --Background:#2D2E30;
+    --Primary:#596991;
+    --secondary:#314163;
+    --accent:#324E85;
+}
+
+#DarkModeButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: var(--Primary);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#DarkModeButton:hover {
+    background-color: var(--accent);
+}

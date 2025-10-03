@@ -1,0 +1,12 @@
+#box1{
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    border: 2px solid;
+    height: 70px;
+    width: 350px;
+    gap: 2px;
+    position: absolute;
+    bottom: 20px;
+    fill: var(--Background)
+}
